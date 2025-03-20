@@ -1,18 +1,34 @@
 import { useEffect, useState } from "react";
 
-function useCurrencyInfo (currency) {
-    const [data, setData] = useState({});
-    useEffect(()=>{
-        fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${currency}.json`)
-        .then((res) => res.json())
-        .then((res) => setData(res[currency]))
-        console.log(data);
-    }, [currency])
-  }  
-  
-  //here the return statement is not used because this is a hook not a component
+function useCurrencyInfo(currency) {
+  const [data, setData] = useState({});
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchCurrencyData = async () => {
+      try {
+        const response = await fetch(`https://api.frankfurter.app/latest?from=${currency}`);
+
+        if (!response.ok) {
+          throw new Error(`Error ${response.status}: ${response.statusText}`);
+        }
+
+        const result = await response.json();
+        setData(result.rates); // Corrected to set only rates, not incorrect mapping
+      } catch (err) {
+        console.error("Fetch Error:", err);
+        setError(err.message);
+      }
+    };
+
+    fetchCurrencyData();
+  }, [currency]);
+
+  return { data, error };
+}
 
 export default useCurrencyInfo;
+
 
 /* 
 This is a React hook named useCurrencyInfo. It fetches currency information from an external API 
