@@ -8,7 +8,6 @@ This project is a simple **currency converter** application built using **React*
 - [Workflow](#workflow)
 - [Custom Hooks](#custom-hooks)
   - [useCurrencyInfo](#usecurrencyinfo)
-  - [useConverter](#useconverter)
 - [Why Custom Hooks?](#why-custom-hooks)
 - [Benefits](#benefits)
 - [Conclusion](#conclusion)
@@ -29,8 +28,7 @@ This application provides the following features:
 1. The user selects the **source** and **target** currencies from the dropdown.
 2. The user enters the **amount** to be converted.
 3. The application uses the **useCurrencyInfo** custom hook to fetch the current exchange rate from the API.
-4. The application uses the **useConverter** custom hook to perform the currency conversion.
-5. The converted amount and **exchange rate** are displayed.
+4. The converted amount and **exchange rate** are displayed.
 
 ---
 
@@ -40,8 +38,6 @@ This project leverages **two custom hooks** to keep the logic modular and reusab
 ### 🔹 useCurrencyInfo
 This hook **fetches the current exchange rate** from an API. It takes the **source and target currencies** as arguments and returns the latest exchange rate.
 
-### 🔹 useConverter
-This hook performs the **currency conversion** based on the exchange rate received from `useCurrencyInfo`.
 
 ---
 
